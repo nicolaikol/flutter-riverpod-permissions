@@ -1,39 +1,81 @@
-<!--
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# riverpod_permissions
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/tools/pub/writing-package-pages).
-
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/to/develop-packages).
--->
-
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
-
-## Features
-
-TODO: List what your package can do. Maybe include images, gifs, or videos.
+A UI wrapper around [permission_handler](https://pub.dev/packages/permission_handler) with Riverpod state management. Handles common patterns like re-checking permissions on app resume and redirecting to Settings when permanently denied.
 
 ## Getting started
 
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
+### 1. Install
 
-## Usage
+```yaml
+dependencies:
+  riverpod_permissions: ^0.0.1
+```
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+### 2. Platform setup
+
+Follow the [permission_handler setup guide](https://pub.dev/packages/permission_handler#setup) for each platform you target (iOS `Info.plist`, Android `AndroidManifest.xml`, etc.).
+
+### 3. Initialise
 
 ```dart
-const like = 'sample';
+import 'package:riverpod_permissions/riverpod_permissions.dart';
+
+void main() {
+  RiverpodPermissions.initialize(
+    RiverpodPermissionsConfig(
+      brandingWidget: Image.asset('assets/logo.png'),
+    ),
+  );
+  runApp(const ProviderScope(child: MyApp()));
+}
+```
+
+## Features
+
+### Riverpod provider
+
+Listen to any permission's state with `permissionRepositoryProvider`:
+
+```dart
+final contactsPerm = ref.watch(permissionRepositoryProvider(Permission.contacts));
+
+switch (contactsPerm) {
+  case AsyncData(:final value):
+    if (value.isAvailable) {
+      // Permission granted — show feature
+    }
+  case AsyncError(:final error):
+    // Handle error
+  case _:
+    // Loading
+}
+```
+
+### Permission splash screen
+
+Use convenience constructors for common permissions:
+
+```dart
+Navigator.of(context).push(
+  MaterialPageRoute(
+    builder: (_) => PermissionSplashScreen.contacts(
+      onComplete: () => Navigator.of(context).pop(),
+    ),
+  ),
+);
+```
+
+Or the general constructor for any permission:
+
+```dart
+PermissionSplashScreen(
+  permission: Permission.microphone,
+  permissionName: 'Microphone',
+  onComplete: () => Navigator.of(context).pop(),
+)
 ```
 
 ## Additional information
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+- **Issues & contributions:** [GitHub Issues](https://github.com/nicolaikol/flutter-riverpod-permissions/issues)
+- **License:** [Apache 2.0](LICENSE)

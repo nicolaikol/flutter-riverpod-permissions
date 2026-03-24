@@ -1,7 +1,13 @@
 name: riverpod_permissions
 description: "A Flutter package for managing permissions with Riverpod."
 version: 0.0.1
-homepage:
+homepage: https://github.com/nicolaikol/flutter-riverpod-permissions
+repository: https://github.com/nicolaikol/flutter-riverpod-permissions
+issue_tracker: https://github.com/nicolaikol/flutter-riverpod-permissions/issues
+topics:
+  - permissions
+  - riverpod
+  - state-management
 
 environment:
   sdk: ^3.11.1

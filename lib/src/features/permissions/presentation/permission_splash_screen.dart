@@ -7,7 +7,6 @@ import '../../../config.dart';
 import '../../../components/error_cards.dart';
 import '../../../components/riverpod_async_card.dart';
 import '../../../hooks/use_app_lifecycle.dart';
-import '../../../services/logger.dart';
 import '../data/permission_repository.dart';
 import '../domain/permission.dart' as domain;
 
@@ -136,7 +135,6 @@ class _PermissionSplashScreenState
           .read(permissionRepositoryProvider(widget.permission).notifier)
           .request();
     } catch (e) {
-      logger.severe('Error requesting permission', e);
       if (mounted) {
         RiverpodPermissions.config.showErrorHandler(
           context,
