@@ -1,3 +1,7 @@
+## 0.0.2
+
+* Tightened dependency lower bounds for pub.dev downgrade analysis compatibility.
+
 ## 0.0.1
 
 * Initial release.
