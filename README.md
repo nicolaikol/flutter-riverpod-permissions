@@ -66,6 +66,16 @@ Navigator.of(context).push(
   MaterialPageRoute(
     builder: (_) => PermissionSplashScreen.contacts(
       onComplete: () => Navigator.of(context).pop(),
+      detailsBuilder: (TextSpan permissionName) => <TextSpan>[
+        TextSpan(text: 'How we use your '),
+        permissionName,
+        TextSpan(
+          text:
+              ' data - when you add a transaction with someone in your contacts, we only take the phone number which you have stored for that user and upload it to the server. Nothing else is taken from your ',
+        ),
+        permissionName,
+        TextSpan(text: ', not even the name of the person. '),
+      ],
     ),
   ),
 );

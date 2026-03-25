@@ -22,21 +22,27 @@ class PermissionSplashScreen extends StatefulHookConsumerWidget {
   PermissionSplashScreen.camera({
     Key? key,
     VoidCallback? onComplete,
+    List<TextSpan> Function(TextSpan permissionName)? detailsBuilder,
   }) // WARNING: DO NOT launch this unless you detect camera error because Android doesn't seem to need camera permission?
   : this(
          key: key,
          permission: Permission.camera,
          icon: HugeIcons.strokeRoundedCamera01,
          onComplete: onComplete,
+         detailsBuilder: detailsBuilder,
        );
 
-  PermissionSplashScreen.contacts({Key? key, VoidCallback? onComplete})
-    : this(
-        key: key,
-        permission: Permission.contacts,
-        icon: HugeIcons.strokeRoundedContact01,
-        onComplete: onComplete,
-      );
+  PermissionSplashScreen.contacts({
+    Key? key,
+    VoidCallback? onComplete,
+    List<TextSpan> Function(TextSpan permissionName)? detailsBuilder,
+  }) : this(
+         key: key,
+         permission: Permission.contacts,
+         icon: HugeIcons.strokeRoundedContact01,
+         onComplete: onComplete,
+         detailsBuilder: detailsBuilder,
+       );
 
   PermissionSplashScreen({
     super.key,

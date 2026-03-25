@@ -1,3 +1,8 @@
+## 0.0.3
+
+* Pass `detailsBuilder` through convenience constructors (`PermissionSplashScreen.contacts()`, etc.).
+* Enhanced README with screenshots and documentation for permanently denied detection.
+
 ## 0.0.2
 
 * Tightened dependency lower bounds for pub.dev downgrade analysis compatibility.
