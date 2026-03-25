@@ -1,6 +1,12 @@
 # riverpod_permissions
 
-A UI wrapper around [permission_handler](https://pub.dev/packages/permission_handler) with Riverpod state management. Handles common patterns like re-checking permissions on app resume and redirecting to Settings when permanently denied.
+A UI wrapper around [permission_handler](https://pub.dev/packages/permission_handler) with Riverpod state management. Handles common patterns like re-checking permissions on app resume and **automatically detecting permanently denied permissions to redirect users to Settings**.
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/nicolaikol/flutter-riverpod-permissions/main/screenshots/splash_screen.png" alt="Permission Splash Screen" width="280" />
+  &nbsp;&nbsp;&nbsp;&nbsp;
+  <img src="https://raw.githubusercontent.com/nicolaikol/flutter-riverpod-permissions/main/screenshots/permission_denied.png" alt="Permanently Denied — Open Settings" width="280" />
+</p>
 
 ## Getting started
 
@@ -74,6 +80,15 @@ PermissionSplashScreen(
   onComplete: () => Navigator.of(context).pop(),
 )
 ```
+
+### Permanently denied detection
+
+When a user **permanently denies** a permission (or revokes it via system settings), the splash screen automatically detects this and transforms the UI:
+
+- A **warning banner** appears explaining that the permission must be granted from Settings
+- The action button changes from "Continue" to **"Open Settings"**, which deep-links directly into your app's system settings page
+
+This is handled entirely by the package — **no extra code required**. The same `PermissionSplashScreen` widget adapts its UI based on the current permission state, including when the user returns from Settings via app resume detection.
 
 ## Additional information
 
