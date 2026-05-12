@@ -14,7 +14,7 @@ A UI wrapper around [permission_handler](https://pub.dev/packages/permission_han
 
 ```yaml
 dependencies:
-  riverpod_permissions: ^0.0.1
+  riverpod_permissions: ^0.0.4
 ```
 
 ### 2. Platform setup

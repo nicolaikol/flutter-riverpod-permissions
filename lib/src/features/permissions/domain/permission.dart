@@ -10,6 +10,7 @@ class Perm {
   //  - Therefore needsOpenSettings can fail to identify the truth.
   bool get needsOpenSettings => status.isPermanentlyDenied || status.isLimited;
   bool get isAvailable => status.isGranted || status.isLimited;
+  bool get isLimited => status.isLimited;
 
   Perm copyWith({PermissionStatus? status}) {
     return Perm(status: status ?? this.status);

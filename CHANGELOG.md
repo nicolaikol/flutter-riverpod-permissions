@@ -1,3 +1,7 @@
+## 0.0.4
+
+* Restore `Perm.isLimited` convenience getter.
+
 ## 0.0.3
 
 * Pass `detailsBuilder` through convenience constructors (`PermissionSplashScreen.contacts()`, etc.).
